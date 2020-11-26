@@ -1,0 +1,15 @@
+Package: ghom
+Title: Testando Funcoes
+Version: 0.0.1
+Authors@R: 
+    person(given = "Gustavo",
+           family = "Mourao",
+           role = c("aut", "cre"),
+           email = "gustavo.mourao@ufvjm.edu.br",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Testando minhas funcoes.
+License: `use_gpl3_license()`
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
