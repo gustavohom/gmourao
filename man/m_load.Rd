@@ -20,10 +20,21 @@ A funcao verifica se o pacote esta instalado e atualizado. Caso negativo, instal
 Em seguida, carrega todos os pacotes nomeados.
 }
 \examples{
+
+Caregando apenas um pacote
+
 m_load("beepr")
 
+# Vetor contento varios pacotes 
+
+ pkg <- c("beepr", "magrittr")
+ m_load(pkg)
+
+# Ocultar mensagens desnecessarias 
+
 pkg <- c("beepr", "magrittr")
-m_load(pkg)
+invisible(m_load(pkg))
+
 }
 \author{
 Mourao
