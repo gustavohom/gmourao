@@ -1,6 +1,6 @@
-Package: ghom
+Package: gmourao
 Title: Testando Funcoes
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person(given = "Gustavo",
            family = "Mourao",
