@@ -21,8 +21,8 @@
 #' 
 #' # Vetor contento varios pacotes 
 #' 
-#'  pkg <- c("beepr", "magrittr")
-#'  m_load(pkg)
+#' pkg <- c("beepr", "magrittr")
+#' m_load(pkg)
 #' 
 #' # Ocultar mensagens desnecessarias 
 #' 

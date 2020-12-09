@@ -1,6 +1,6 @@
 #' @title Limpar ambiente
 #' 
-#' @name m_load
+#' @name m_clear
 #'
 #' @description Limpa o ambiente global (Global Environment)
 #'
