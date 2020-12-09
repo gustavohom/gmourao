@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' 
-#' Caregando apenas um pacote
+#' # Caregando apenas um pacote
 #' 
 #' m_load("beepr")
 #' 

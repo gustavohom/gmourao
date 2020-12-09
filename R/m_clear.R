@@ -24,7 +24,7 @@
 #' c <-  c(1,2,3)
 #' d <- 456L
 #' 
-#' reset(manter = c("a", "b"))
+#' m_clear(manter = c("a", "b"))
 #' 
 #' # Exemplo 2
 #' 
@@ -33,7 +33,7 @@
 #' c <-  c(1,2,3)
 #' d <- 456L
 #' 
-#' reset(manter = c("a", "b"), console = FALSE)
+#' m_clear(manter = c("a", "b"), console = FALSE)
 #' 
 #' @export
 #'
