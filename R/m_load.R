@@ -30,7 +30,7 @@
 #' invisible(m_load(pkg))
 #' 
 #' @export
-#' 
+#'
 m_load <-function(pkg) {
   
   ipkg <- c(pkg[!pkg %in% installed.packages()], 
