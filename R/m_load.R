@@ -31,12 +31,35 @@
 #' 
 #' @export
 #'
-m_load <-function(pkg) {
+m_load <- function(pkg) {
   
-  ipkg <- c(pkg[!pkg %in% installed.packages()], 
-            pkg[pkg %in% rownames(old.packages())])
+  github <- grep("^.*?/.*?$", pkg, value = TRUE)
   
-  install.packages(ipkg)
+  githubNames <- sub("^.*?/", "", github)
+  
+  cran <- pkg[!(pkg %in% github)]
+  
+  pkg <- c(githubNames, cran)
+  
+  ipkg <-
+    c(pkg[!pkg %in% installed.packages()], pkg[pkg %in% rownames(old.packages())])
+  
+  cranIns  <- cran[which(cran %in% ipkg)]
+  
+  githubIns <- github[which(githubNames %in% ipkg)]
+  
+  if (length(cranIns) > 0) {
+    install.packages(cranIns)
+  }
+  
+  if (length(githubIns) > 0) {
+    if ("remotes" %in% installed.packages() == FALSE) {
+      install.packages("remotes")
+    }
+    
+    remotes::install_github(githubIns)
+  }
   
   lapply(pkg, library, character = TRUE)
+  
 }
