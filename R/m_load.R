@@ -28,10 +28,61 @@
 #' 
 #' pkg <- c("beepr", "magrittr")
 #' invisible(m_load(pkg))
+#'
+#' Veja todas as maneiras que pode ser usado
+#'
+#' # 1 Nome de um pacote em character
+#' 
+#' m_load("beepr")
+#' 
+#' #2 uma variavel com nome de um pacote
+#' 
+#' pkg <- "beepr"
+#' 
+#' m_load(pkg)
+#' 
+#' #3 nome de dois pacotes em character
+#' 
+#' m_load(c("beepr", "rlang"))
+#' 
+#' #4 vetor com nome de dois pacotes
+#' 
+#' pkg <- c("beepr", "rlang")
+#' 
+#' m_load(pkg)
+#' 
+#' #5 todas a maneiras anteriores podem ser usadas com instalacao para 
+#' # github, para isso use: userName/package
+#' 
+#' pkg <- c("beepr", "gustavohom/gmourao")
+#' 
+#' m_load(pkg)
+#' 
+#' # 6 é possivel carregar o nome dos pacotes sem a necessidade de aspas,
+#' # porem apenas um por vez
 #' 
 #' @export
 #'
 m_load <- function(pkg) {
+  
+  if (exists(deparse(substitute(pkg)), where = .GlobalEnv)) {
+    pkg <- pkg
+  }
+  
+  else {
+    
+    if (try(is.character(pkg), silent = TRUE)
+        == TRUE) {
+      pkg <- pkg
+      
+    } else{
+      
+      pkg <- deparse(substitute(pkg))
+
+    }
+  }
+  
+  print
   
   github <- grep("^.*?/.*?$", pkg, value = TRUE)
   
@@ -39,12 +90,12 @@ m_load <- function(pkg) {
   
   cran <- pkg[!(pkg %in% github)]
   
-  pkg <-sub("^.*?/", "", pkg)
+  pkg <- sub("^.*?/", "", pkg)
   
   ipkg <-
     c(pkg[!pkg %in% installed.packages()], pkg[pkg %in% rownames(old.packages())])
   
-  cranIns  <- cran[which(cran %in% ipkg)]
+  cranIns <- cran[which(cran %in% ipkg)]
   
   githubIns <- github[which(githubNames %in% ipkg)]
   
@@ -61,5 +112,4 @@ m_load <- function(pkg) {
   }
   
   lapply(pkg, library, character = TRUE)
-  
 }
