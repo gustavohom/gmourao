@@ -39,7 +39,7 @@ m_load <- function(pkg) {
   
   cran <- pkg[!(pkg %in% github)]
   
-  pkg <- c(githubNames, cran)
+  pkg <-sub("^.*?/", "", pkg)
   
   ipkg <-
     c(pkg[!pkg %in% installed.packages()], pkg[pkg %in% rownames(old.packages())])
