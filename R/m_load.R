@@ -82,8 +82,6 @@ m_load <- function(pkg) {
     }
   }
   
-  print
-  
   github <- grep("^.*?/.*?$", pkg, value = TRUE)
   
   githubNames <- sub("^.*?/", "", github)
