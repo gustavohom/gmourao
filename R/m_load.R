@@ -63,51 +63,59 @@
 #' 
 #' @export
 #'
-m_load <- function(pkg) {
-  
-  if (exists(deparse(substitute(pkg)), where = .GlobalEnv)) {
-    pkg <- pkg
-  }
-  
-  else {
-    
-    if (try(is.character(pkg), silent = TRUE)
-        == TRUE) {
-      pkg <- pkg
-      
-    } else{
-      
-      pkg <- deparse(substitute(pkg))
-
-    }
-  }
-  
-  github <- grep("^.*?/.*?$", pkg, value = TRUE)
-  
-  githubNames <- sub("^.*?/", "", github)
-  
-  cran <- pkg[!(pkg %in% github)]
-  
-  pkg <- sub("^.*?/", "", pkg)
-  
-  ipkg <-
-    c(pkg[!pkg %in% installed.packages()], pkg[pkg %in% rownames(old.packages())])
-  
-  cranIns <- cran[which(cran %in% ipkg)]
-  
-  githubIns <- github[which(githubNames %in% ipkg)]
-  
-  if (length(cranIns) > 0) {
-    install.packages(cranIns)
-  }
-  
-  if (length(githubIns) > 0) {
-    if ("remotes" %in% installed.packages() == FALSE) {
-      install.packages("remotes")
-    }
-    
-    remotes::install_github(githubIns)
-  }
-  
-  lapply(pkg, library, character = TRUE)
+m_load <- function(pkg, ...) {
+        if (exists(deparse(substitute(pkg)), where = .GlobalEnv)) {
+                pkg <- pkg
+        }
+        
+        else {
+                if (try(is.character(pkg), silent = TRUE)
+                    == TRUE) {
+                        pkg <- pkg
+                        list_pkg = list(...)
+                        for (i in unique(list_pkg)) {
+                                pkg <- append(pkg, i)
+                        }
+                        
+                } else{
+                        pkg <- deparse(substitute(pkg))
+                        
+                        list_pkg <-
+                                as.character(match.call(expand.dots = FALSE)[[3]])
+                        
+                        for (i in unique(list_pkg)) {
+                                pkg <- append(pkg, i)
+                        }
+                        
+                }
+        }
+        
+        github <- grep("^.*?/.*?$", pkg, value = TRUE)
+        
+        githubNames <- sub("^.*?/", "", github)
+        
+        cran <- pkg[!(pkg %in% github)]
+        
+        pkg <- sub("^.*?/", "", pkg)
+        
+        ipkg <-
+                c(pkg[!pkg %in% installed.packages()], pkg[pkg %in% rownames(old.packages())])
+        
+        cranIns <- cran[which(cran %in% ipkg)]
+        
+        githubIns <- github[which(githubNames %in% ipkg)]
+        
+        if (length(cranIns) > 0) {
+                install.packages(cranIns)
+        }
+        
+        if (length(githubIns) > 0) {
+                if ("remotes" %in% installed.packages() == FALSE) {
+                        install.packages("remotes")
+                }
+                
+                remotes::install_github(githubIns)
+        }
+        
+        lapply(pkg, library, character = TRUE)
 }
