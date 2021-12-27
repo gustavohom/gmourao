@@ -1,6 +1,6 @@
 Package: gmourao
 Title: Testando Funcoes
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: 
     person(given = "Gustavo",
            family = "Mourao",
@@ -12,4 +12,4 @@ License: `use_gpl3_license()`
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2

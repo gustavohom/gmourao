@@ -4,7 +4,7 @@
 \alias{m_load}
 \title{Carregar pacotes}
 \usage{
-m_load(pkg)
+m_load(pkg, ...)
 }
 \arguments{
 \item{pkg}{o nome de um pacote ou um vetor de string com o nome de varios pacotes.}
@@ -21,7 +21,7 @@ Em seguida, carrega todos os pacotes nomeados.
 }
 \examples{
 
-Caregando apenas um pacote
+# Caregando apenas um pacote
 
 m_load("beepr")
 
@@ -34,6 +34,38 @@ m_load(pkg)
 
 pkg <- c("beepr", "magrittr")
 invisible(m_load(pkg))
+
+Veja todas as maneiras que pode ser usado
+
+# 1 Nome de um pacote em character
+
+m_load("beepr")
+
+#2 uma variavel com nome de um pacote
+
+pkg <- "beepr"
+
+m_load(pkg)
+
+#3 nome de dois pacotes em character
+
+m_load(c("beepr", "rlang"))
+
+#4 vetor com nome de dois pacotes
+
+pkg <- c("beepr", "rlang")
+
+m_load(pkg)
+
+#5 todas a maneiras anteriores podem ser usadas com instalacao para 
+# github, para isso use: userName/package
+
+pkg <- c("beepr", "gustavohom/gmourao")
+
+m_load(pkg)
+
+# 6 é possivel carregar o nome dos pacotes sem a necessidade de aspas,
+# porem apenas um por vez
 
 }
 \author{
