@@ -58,7 +58,7 @@
 #' 
 #' m_load(pkg)
 #' 
-#' # 6 é possivel carregar o nome dos pacotes sem a necessidade de aspas,
+#' # 6 C) possivel carregar o nome dos pacotes sem a necessidade de aspas,
 #' # porem apenas um por vez
 #' 
 #' @export
@@ -80,8 +80,10 @@ m_load <- function(pkg, ...) {
                 } else{
                         pkg <- deparse(substitute(pkg))
                         
-                        list_pkg <-
-                                as.character(match.call(expand.dots = FALSE)[[3]])
+                        list_pkg = list()
+                        
+                        try(list_pkg <-
+                                as.character(match.call(expand.dots = FALSE)[[3]]))
                         
                         for (i in unique(list_pkg)) {
                                 pkg <- append(pkg, i)
