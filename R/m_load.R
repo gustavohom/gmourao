@@ -83,7 +83,7 @@ m_load <- function(pkg, ...) {
                         list_pkg = list()
                         
                         try(list_pkg <-
-                                as.character(match.call(expand.dots = FALSE)[[3]]))
+                                as.character(match.call(expand.dots = FALSE)[[3]]), silent = TRUE)
                         
                         for (i in unique(list_pkg)) {
                                 pkg <- append(pkg, i)
